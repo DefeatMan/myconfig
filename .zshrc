@@ -1,5 +1,8 @@
-export LANGUAGE="en_US.UTF-8"
-export LC_ALL=
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+autoload bashcompinit
+bashcompinit
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -15,6 +18,8 @@ export HIGHLIGHT_STYLE="base16/gruv_box-dark-hard"
 
 # Bindkey
 # for rxvt
+bindkey '[3~' delete-char
+
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 
