@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline'
 # Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 # Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'morhetz/gruvbox'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -52,6 +53,16 @@ set shiftwidth=2    # 表示每一级缩进的长度
 set softtabstop=2   # 退格键退回缩进空格的长度
 set expandtab       # 设置缩进用空格表示
 set autoindent      # 自动缩进
+
+# Github Copilot
+g:copilot_not_tab_map = v:true
+g:copilot_enabled  = v:false
+imap <silent><script><expr> j copilot#Accept("\<CR>")
+imap q <Plug>(copilot-suggest)
+imap k <Plug>(copilot-accept-word)
+imap l <Plug>(copilot-accept-line)
+imap ] <Plug>(copilot-next)
+imap [ <Plug>(copilot-previous)
 
 # OSC-YANK
 nmap <leader>c <Plug>OSCYankOperator
