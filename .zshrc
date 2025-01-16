@@ -73,7 +73,11 @@ export ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.20
 # Plugin
 [[ -s /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
+
+# Z
+# export _Z_CMD=j
+# git clone https://github.com/rupa/z.git
+[[ -s /home/kome/gitrepo/z/z.sh ]] && source /home/kome/gitrepo/z/z.sh
 
 # Alias
 alias l='ls -a --color'
