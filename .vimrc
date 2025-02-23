@@ -121,6 +121,7 @@ g:ycm_language_server =
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>rn :YcmCompleter RefactorRename 
 
 # ALE
 g:ale_linters_explicit = 1
@@ -219,7 +220,7 @@ if !isdirectory(vim_tags)
 endif
 
 # clang-format
-nnoremap mm :py3f /usr/share/clang/clang-format-14/clang-format.py<cr>
+nnoremap mm :py3f /usr/share/clang/clang-format.py<cr>
 
 func Formatonsave()
   let l:formatdiff = 1
