@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/asyncrun.vim'
+# Plug 'skywind3000/asynctasks.vim' # READY
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'w0rp/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -168,7 +169,7 @@ def g:CompileBuild()
 enddef
 noremap <silent> <F9> :call CompileBuild()<cr>
 
-# 用<F5>运行
+# 用<F10>运行
 def g:CompileRun()
     exec "w"
     if &filetype == 'c'
@@ -185,11 +186,24 @@ def g:CompileRun()
 enddef
 noremap <silent> <F10> :call CompileRun()<cr>
 
+def g:CompileRunInTerminal()
+    exec "w"
+    if &filetype == 'c'
+       exec ":AsyncRun -mode=term -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    elseif &filetype == 'cpp'
+       exec ":AsyncRun -mode=term -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+    elseif &filetype == 'python'
+       exec ":AsyncRun -mode=term -raw python3 $(VIM_FILEPATH)"
+    elseif &filetype == 'go'
+       exec ":AsyncRun -mode=term -raw go run $(VIM_FILEPATH)"
+    elseif &filetype == 'javascript'
+       exec ":AsyncRun -mode=term -raw node $(VIM_FILEPATH)"
+    endif
+enddef
+noremap <silent> <F8> :call CompileRunInTerminal()<cr>
+
 # 设置 F5 打开/关闭 Quickfix 窗口
 nnoremap <F5> :call asyncrun#quickfix_toggle(12)<cr>
-nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
-nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
-nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
 
 # ctags
 # ctags --fields=+niazS --extras=+qF --kinds-c++=+pxl --kinds-c=+pxl -I \"_GLIBCXX_NOEXCEPT _GLIBCXX_USE_NOEXCEPT _GLIBCXX_NOTHROW _GLIBCXX_USE_CONSTEXPR _GLIBCXX_BEGIN_NAMESPACE_CONTAINER _GLIBCXX_END_NAMESPACE_CONTAINER _GLIBCXX_CONSTEXPR _GLIBCXX_NAMESPACE_LDBL _GLIBCXX_BEGIN_NAMESPACE_VERSION _GLIBCXX_END_NAMESPACE_VERSION _GLIBCXX_VISIBILITY+" -R -f ~/.vim/systags /usr/include/
