@@ -1,0 +1,9 @@
+[alias]
+	graph = log --graph --oneline
+	d = difftool
+	st = status --short
+	l = log --oneline -n
+[difftool]
+	prompt = false
+[diff]
+	tool = vimdiff
